@@ -3,7 +3,7 @@ name: Deploy Nginx Reverse Proxy
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build:
