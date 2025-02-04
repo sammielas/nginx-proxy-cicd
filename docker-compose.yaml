@@ -1,22 +1,38 @@
-version: '3'
 services:
   app1:
-    build: .
+    image: my-app
+    container_name: app1
     environment:
       - APP_NAME=App1
     ports:
       - "3001:3000"
 
   app2:
-    build: .
+    image: my-app
+    container_name: app2
     environment:
       - APP_NAME=App2
     ports:
       - "3002:3000"
 
   app3:
-    build: .
+    image: my-app
+    container_name: app3
     environment:
       - APP_NAME=App3
     ports:
       - "3003:3000"
+
+  nginx:
+    image: my-nginx  
+    container_name: nginx
+    ports:
+      - "8080:80"
+      - "8443:443"
+      - "80:80"  
+    volumes:
+      - ./certs:/etc/nginx/certs
+    depends_on:
+      - app1
+      - app2
+      - app3
